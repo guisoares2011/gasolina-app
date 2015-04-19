@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="GasolinaAppTheme" parent="@android:style/Theme.Holo.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/GasolinaApp.ActionBarStyle</item>
+    </style>
+
+
+    <!-- ActionBar styles -->
+    <style name="GasolinaApp.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/backoground_actionbar</item>
+        <item name="android:titleTextStyle">@style/GasolinaApp.ActionBar.TitleTextStyle</item>
+    </style>
+
+    <style name="GasolinaApp.ActionBar.TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
+</resources>

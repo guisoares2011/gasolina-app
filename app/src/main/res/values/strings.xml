@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Gasolina App</string>
+    <string name="title_activity_main">Gasolina App</string>
+    <string name="action_search">Pesquisar</string>
+    <string name="drawer_open">OI</string>
+    <string name="drawer_close">KK</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_not_available">a</string>
+    <string name="action_websearch">Teste</string>
+    <string name="favorito_text_button">Favoritos</string>
+    <string name="recentes_string_button">Recentes</string>
+    <string name="sobre_text_button">Sobre</string>
+    <string name="ajuda_text_button">Ajuda</string>
+    <string name="search_title">Digite um endereço ou posto</string>
+    <string name="search_hint">Digite um endereço ou posto</string>
+</resources>
