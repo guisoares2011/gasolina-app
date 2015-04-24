@@ -3,13 +3,14 @@
     <!-- Base application theme. -->
     <style name="GasolinaAppTheme" parent="@android:style/Theme.Holo.Light">
         <!-- Customize your theme here. -->
-
+        <item name="android:actionBarStyle">@style/GasolinaApp.ActionBarStyle</item>
     </style>
 
 
     <!-- ActionBar styles -->
     <style name="GasolinaApp.ActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
         <item name="android:background">@drawable/backoground_actionbar</item>
+
         <item name="android:titleTextStyle">@style/GasolinaApp.ActionBar.TitleTextStyle</item>
     </style>
 

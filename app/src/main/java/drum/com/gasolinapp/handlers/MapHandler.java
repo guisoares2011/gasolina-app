@@ -11,6 +11,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.List;
+
+import drum.com.gasolinapp.objects.GasStation;
+
 /**
  * Created by gui-wani on 06/04/2015.
  */
@@ -24,9 +28,16 @@ public class MapHandler {
         this.activity = activity;
     }
 
-    public void initialize(){
-        setCameraToCurrentLocation();
+    public void initialize(List<GasStation> listGastation){
+        createMarkers(listGastation);
     }
+
+    public void createMarkers(List<GasStation> listGastation){
+        for(GasStation gasStation : listGastation){
+
+        }
+    }
+
 
     public void setCameraToCurrentLocation(){
         map.setMyLocationEnabled(true);

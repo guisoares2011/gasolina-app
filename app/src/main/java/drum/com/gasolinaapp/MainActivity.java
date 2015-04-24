@@ -5,7 +5,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.view.ContextMenu;
@@ -16,16 +15,16 @@ import android.view.View;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import drum.com.gasolinapp.handlers.MapHandler;
+import drum.com.gasolinapp.helpers.DrawerInitializeHelper;
+import drum.com.gasolinapp.objects.GasStation;
 
-import static drum.com.gasolinaapp.R.menu.main_menu;
-
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements DrawerHelperInterface{
 
     private GoogleMap map; // Might be null if Google Play services APK is not available.
 
@@ -41,6 +40,17 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         setUpMapIfNeeded();
         setDrawerMenu();
+        /*
+        * listaAlunos.setOnItemClickListener(new OnItemClickListener() {
+        	@Override
+	        public void onItemClick(AdapterView<?> adapter, View view, int posicao,
+	        		long id) {
+        		Intent edicao = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
+        		edicao.putExtra(Extras.ALUNO_SELECIONADO, (Aluno) listaAlunos.getItemAtPosition(posicao));
+        		startActivity(edicao);
+	        }
+        });
+        * */
     }
 
     @Override
@@ -86,30 +96,13 @@ public class MainActivity extends Activity {
     }
 
     public void setDrawerMenu(){
-        mTitle = mDrawerTitle = getTitle();
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close) {
-
-            /** Called when a drawer has settled in a completely closed state. */
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                getActionBar().setTitle(mTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-
-            /** Called when a drawer has settled in a completely open state. */
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                getActionBar().setTitle(mDrawerTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-        };
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-        getActionBar().setHomeButtonEnabled(true);
-        getActionBar().setDisplayUseLogoEnabled(true);
+        CharSequence title = getTitle();
+        DrawerInitializeHelper helperDrawer = new DrawerInitializeHelper(this, title, title);
+        helperDrawer.setDrawerLayout((DrawerLayout) findViewById(R.id.drawer_layout));
+        helperDrawer.build();
+        mDrawerToggle = helperDrawer.getDrawerToggle();
+        mDrawerLayout = helperDrawer.getDrawerLayout();
     }
 
     private void setUpMapIfNeeded() {
@@ -123,7 +116,11 @@ public class MainActivity extends Activity {
 
             // Check if we were successful in obtaining the map.
             if (map != null) {
-                mapHandler.initialize();
+                mapHandler.initialize(new ArrayList<GasStation>(){{
+                    add(new GasStation(1, "Posto do Ipiranga"){{
+
+                    }});
+                }});
             }
         }
     }

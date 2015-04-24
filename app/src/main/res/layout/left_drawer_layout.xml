@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/left_drawer"
+    android:layout_width="240dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:choiceMode="singleChoice"
+    android:divider="@android:color/transparent"
+    android:dividerHeight="0dp"
+    android:background="#e6ecf1"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/favorito_text_button"
+        android:id="@+id/favoritos_button"
+        android:background="@drawable/menu_button_state_background"
+        android:textColor="@color/drawer_menu_text_button"
+        android:drawablePadding="5dip"
+        android:gravity="left|center_vertical"
+        android:drawableLeft="@drawable/star_menu_icon"
+        android:padding="10dp" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recentes_string_button"
+        android:id="@+id/button2"
+        android:drawablePadding="5dip"
+        android:background="@drawable/menu_button_state_background"
+        android:textColor="@color/drawer_menu_text_button"
+        android:gravity="left|center_vertical"
+        android:drawableLeft="@drawable/recentes_icon"
+        android:padding="10dp" />
+    <View android:id="@+id/separator"
+        android:background="@color/drawer_menu_space"
+        android:layout_width = "fill_parent"
+        android:layout_height="2dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sobre_text_button"
+        android:id="@+id/about_us_button"
+        android:drawablePadding="5dip"
+        android:textColor="@color/drawer_menu_text_button"
+        android:background="@drawable/menu_button_state_background"
+        android:gravity="left|center_vertical"
+        android:drawableLeft="@drawable/info_drawer_icon"
+        android:padding="10dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ajuda_text_button"
+        android:id="@+id/help_button_menu"
+        android:drawablePadding="5dip"
+        android:background="@drawable/menu_button_state_background"
+        android:textColor="@color/drawer_menu_text_button"
+        android:gravity="left|center_vertical"
+        android:drawableLeft="@drawable/help_drawer_icon"
+        android:padding="10dp" />
+</LinearLayout>
