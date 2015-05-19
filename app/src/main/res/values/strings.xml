@@ -13,4 +13,8 @@
     <string name="ajuda_text_button">Ajuda</string>
     <string name="search_title">Digite um endereço ou posto</string>
     <string name="search_hint">Digite um endereço ou posto</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>
