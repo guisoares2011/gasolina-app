@@ -1,4 +1,4 @@
-package drum.com.gasolinapp.objects;
+package drum.com.gasolinaapp.objects;
 
 /**
  * Created by gui-wani on 20/04/2015.

@@ -1,4 +1,4 @@
-package drum.com.gasolinapp.handlers;
+package drum.com.gasolinaapp.handlers;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
-import drum.com.gasolinapp.objects.GasStation;
+import drum.com.gasolinaapp.objects.GasStation;
 
 /**
  * Created by gui-wani on 06/04/2015.

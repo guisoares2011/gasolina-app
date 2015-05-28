@@ -17,4 +17,10 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="dialog_fire_missiles">teste</string>
+    <string name="fire">oi</string>
+    <string name="error_button_texto">Fechar</string>
+    <string name="error_connection_title">Erro de Conexão</string>
+    <string name="error_connection_message">Ops! Aconteceu algum problema de conexão ao tentar atualizar as informações sobre os postos de gasolina.</string>
+    <string name="error_connection_button_texto">OK! Tentar novamente.</string>
 </resources>

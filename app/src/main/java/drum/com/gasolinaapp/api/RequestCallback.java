@@ -1,12 +1,10 @@
-package drum.com.gasolinapp.api;
+package drum.com.gasolinaapp.api;
 
 import android.content.Context;
 
 import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
-
-import java.util.Map;
 
 /**
  * Created by gui-wani on 18/05/2015.

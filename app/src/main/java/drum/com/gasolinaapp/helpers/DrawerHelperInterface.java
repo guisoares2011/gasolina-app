@@ -1,4 +1,4 @@
-package drum.com.gasolinaapp;
+package drum.com.gasolinaapp.helpers;
 
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;

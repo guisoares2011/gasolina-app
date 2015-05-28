@@ -1,12 +1,14 @@
-package drum.com.gasolinaapp;
+package drum.com.gasolinaapp.activities;
 
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,11 +22,14 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import drum.com.gasolinapp.handlers.MapHandler;
-import drum.com.gasolinapp.helpers.DrawerInitializeHelper;
-import drum.com.gasolinapp.objects.GasStation;
+import drum.com.gasolinaapp.helpers.DrawerHelperInterface;
+import drum.com.gasolinaapp.R;
+import drum.com.gasolinaapp.handlers.MapHandler;
+import drum.com.gasolinaapp.helpers.DrawerInitializeHelper;
+import drum.com.gasolinaapp.objects.GasStation;
+import drum.com.gasolinaapp.objects.Posto;
 
-public class MainActivity extends Activity implements DrawerHelperInterface{
+public class MainActivity extends Activity implements DrawerHelperInterface {
 
     private GoogleMap map; // Might be null if Google Play services APK is not available.
 
@@ -38,19 +43,14 @@ public class MainActivity extends Activity implements DrawerHelperInterface{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bundle b = getIntent().getExtras();
+        Object[] listPosto = b.getParcelableArray("postoList");
+        if(listPosto != null){
+            Log.i("MY", ((Posto)listPosto[0]).getName());
+        }
+
         setUpMapIfNeeded();
         setDrawerMenu();
-        /*
-        * listaAlunos.setOnItemClickListener(new OnItemClickListener() {
-        	@Override
-	        public void onItemClick(AdapterView<?> adapter, View view, int posicao,
-	        		long id) {
-        		Intent edicao = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
-        		edicao.putExtra(Extras.ALUNO_SELECIONADO, (Aluno) listaAlunos.getItemAtPosition(posicao));
-        		startActivity(edicao);
-	        }
-        });
-        * */
     }
 
     @Override
