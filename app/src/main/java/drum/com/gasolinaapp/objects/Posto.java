@@ -2,6 +2,7 @@ package drum.com.gasolinaapp.objects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,10 +35,11 @@ public class Posto implements  Parcelable {
         JSONArray fuels = data.getJSONArray("fuels");
         for(int i = 0; i < fuels.length(); i++){
             JSONObject f = (JSONObject) fuels.get(i);
+            Log.i("MY", f.toString(2));
             this.fuelList.add(new Fuel(
                     f.getInt("type"),
-                    f.getDouble("value"),
-                    f.getDouble("original")
+                    f.getDouble("selling_price"),
+                    f.getDouble("purchase_price")
             ));
         }
         this.bandeira = data.getString("bandeira");

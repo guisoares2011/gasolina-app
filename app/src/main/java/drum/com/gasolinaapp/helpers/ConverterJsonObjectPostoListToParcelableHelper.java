@@ -1,6 +1,7 @@
 package drum.com.gasolinaapp.helpers;
 
 import android.os.Parcelable;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,16 +16,17 @@ import drum.com.gasolinaapp.objects.Posto;
  */
 public class ConverterJsonObjectPostoListToParcelableHelper {
 
-    public static Parcelable[] toParcelable(JSONObject data){
-        ArrayList<Posto> list = new ArrayList<Posto>();
+    public static Posto[] toParcelable(JSONObject data){
+        ArrayList<Posto> list = new ArrayList<>();
+
         try{
             JSONArray postosListRequest = data.getJSONArray("postos");
             for(int i = 0; i < postosListRequest.length(); i++){
                 list.add(new Posto((JSONObject) postosListRequest.get(i)));
             }
         } catch (JSONException e){
-            return ((Parcelable[]) list.toArray());
+            Log.e("MY", "Ocurred some error while trying to parse JSON or extract data from it", e);
         }
-        return (Parcelable[]) list.toArray();
+        return list.toArray(new Posto[list.size()]);
     }
 }

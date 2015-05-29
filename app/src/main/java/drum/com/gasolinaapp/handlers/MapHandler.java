@@ -14,6 +14,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
 import drum.com.gasolinaapp.objects.GasStation;
+import drum.com.gasolinaapp.objects.Posto;
 
 /**
  * Created by gui-wani on 06/04/2015.
@@ -28,14 +29,12 @@ public class MapHandler {
         this.activity = activity;
     }
 
-    public void initialize(List<GasStation> listGastation){
+    public void initialize(List<Posto> listGastation){
         createMarkers(listGastation);
     }
 
-    public void createMarkers(List<GasStation> listGastation){
-        for(GasStation gasStation : listGastation){
+    public void createMarkers(List<Posto> listGastation){
 
-        }
     }
 
 

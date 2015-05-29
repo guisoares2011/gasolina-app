@@ -1,11 +1,14 @@
 package drum.com.gasolinaapp.activities;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -21,7 +24,9 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import drum.com.gasolinaapp.fragments.PostoMapFragment;
 import drum.com.gasolinaapp.helpers.DrawerHelperInterface;
 import drum.com.gasolinaapp.R;
 import drum.com.gasolinaapp.handlers.MapHandler;
@@ -32,25 +37,35 @@ import drum.com.gasolinaapp.objects.Posto;
 public class MainActivity extends Activity implements DrawerHelperInterface {
 
     private GoogleMap map; // Might be null if Google Play services APK is not available.
-
+    private boolean firstIntentAfterSplashScreen = true;
     private MapHandler mapHandler;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private CharSequence mDrawerTitle;
-    private CharSequence mTitle;
+    private ArrayList<Posto> postoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Bundle b = getIntent().getExtras();
-        Object[] listPosto = b.getParcelableArray("postoList");
-        if(listPosto != null){
-            Log.i("MY", ((Posto)listPosto[0]).getName());
-        }
+        if(firstIntentAfterSplashScreen){
+            firstIntentAfterSplashScreen = false;
+            Bundle b = getIntent().getExtras();
+            ArrayList<Posto> listPosto = b.getParcelableArrayList("postoList");
+            if(listPosto != null){
+                postoList = listPosto;
+            }
+            changeContentToFragment(PostoMapFragment.newInstance("a", "da"));
 
-        setUpMapIfNeeded();
-        setDrawerMenu();
+//            setUpMapIfNeeded();
+//            setDrawerMenu();
+        }
+    }
+
+    private void changeContentToFragment(Fragment fragment) {
+        FragmentManager manager = getFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragment_content, fragment); // newInstance() is a static factory method.
+        transaction.commit();
     }
 
     @Override
@@ -106,6 +121,7 @@ public class MainActivity extends Activity implements DrawerHelperInterface {
     }
 
     private void setUpMapIfNeeded() {
+
         // Do a null check to confirm that we have not already instantiated the map.
         if (map == null) {
             // Try to obtain the map from the SupportMapFragment.
@@ -116,11 +132,7 @@ public class MainActivity extends Activity implements DrawerHelperInterface {
 
             // Check if we were successful in obtaining the map.
             if (map != null) {
-                mapHandler.initialize(new ArrayList<GasStation>(){{
-                    add(new GasStation(1, "Posto do Ipiranga"){{
-
-                    }});
-                }});
+                mapHandler.initialize(postoList);
             }
         }
     }
