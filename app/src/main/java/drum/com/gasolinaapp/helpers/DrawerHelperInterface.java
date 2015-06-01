@@ -10,4 +10,12 @@ public interface DrawerHelperInterface {
     public DrawerLayout drawerLayout = null;
     public ActionBarDrawerToggle drawerToggle = null;
     public void setDrawerMenu();
+
+    public void changeContentByFragment(int id);
+
+    public int POSTO_INTENT = 1;
+//    public int POSTO_INTENT = 1;
+//    public int POSTO_INTENT = 1;
+//    public int POSTO_INTENT = 1;
+    public int ABOUT_US_INTENT = 4;
 }

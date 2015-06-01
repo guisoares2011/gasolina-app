@@ -10,6 +10,22 @@
     android:background="#e6ecf1"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListView
+        android:layout_width="match_parent"
+        android:id="@+id/menu_list_button"
+        android:layout_height="match_parent"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/search_posto"
+        android:id="@+id/mapa"
+        android:background="@drawable/menu_button_state_background"
+        android:textColor="@color/drawer_menu_text_button"
+        android:drawablePadding="5dip"
+        android:gravity="left|center_vertical"
+        android:drawableLeft="@drawable/star_menu_icon"
+        android:padding="10dp" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -16,7 +16,7 @@ import drum.com.gasolinaapp.objects.Posto;
  */
 public class ConverterJsonObjectPostoListToParcelableHelper {
 
-    public static Posto[] toParcelable(JSONObject data){
+    public static ArrayList<Posto> toParcelable(JSONObject data){
         ArrayList<Posto> list = new ArrayList<>();
 
         try{
@@ -27,6 +27,6 @@ public class ConverterJsonObjectPostoListToParcelableHelper {
         } catch (JSONException e){
             Log.e("MY", "Ocurred some error while trying to parse JSON or extract data from it", e);
         }
-        return list.toArray(new Posto[list.size()]);
+        return list;
     }
 }

@@ -23,4 +23,5 @@
     <string name="error_connection_title">Erro de Conexão</string>
     <string name="error_connection_message">Ops! Aconteceu algum problema de conexão ao tentar atualizar as informações sobre os postos de gasolina.</string>
     <string name="error_connection_button_texto">OK! Tentar novamente.</string>
+    <string name="search_posto">Buscar Postos</string>
 </resources>

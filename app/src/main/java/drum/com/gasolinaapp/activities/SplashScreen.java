@@ -11,11 +11,15 @@ import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import drum.com.gasolinaapp.R;
 import drum.com.gasolinaapp.api.GasolinaAppAPI;
 import drum.com.gasolinaapp.api.RequestCallback;
 import drum.com.gasolinaapp.fragments.DialogError;
 import drum.com.gasolinaapp.helpers.ConverterJsonObjectPostoListToParcelableHelper;
+import drum.com.gasolinaapp.helpers.DataSaveHelper;
+import drum.com.gasolinaapp.objects.Posto;
 
 
 public class SplashScreen extends FragmentActivity {
@@ -38,7 +42,7 @@ public class SplashScreen extends FragmentActivity {
             public void ok(JSONObject data, Context context){
                 Intent intent = new Intent();
                 intent.setClass(SplashScreen.this, MainActivity.class);
-                intent.putExtra("postoList", ConverterJsonObjectPostoListToParcelableHelper.toParcelable(data));
+                DataSaveHelper.setListPosto(ConverterJsonObjectPostoListToParcelableHelper.toParcelable(data));
                 startActivity(intent);
                 finish();
             }

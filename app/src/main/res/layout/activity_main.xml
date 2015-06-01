@@ -12,22 +12,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
-            <fragment
-                xmlns:tools="http://schemas.android.com/tools"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/fragment_content"
-                tools:context=".MainActivity"
-                tools:layout="@android:layout/preference_category"
+                android:id="@+id/fragment_container"
                 />
-            <!--<fragment-->
-                <!--xmlns:tools="http://schemas.android.com/tools"-->
-                <!--android:id="@+id/map"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--tools:context=".MainActivity"-->
-                <!--android:name="com.google.android.gms.maps.MapFragment"-->
-                <!--tools:layout="@android:layout/preference_category"/>-->
 
             <View
                 android:layout_width="match_parent"

@@ -1,14 +1,11 @@
 package drum.com.gasolinaapp.activities;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.app.Fragment;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -17,31 +14,26 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
+import drum.com.gasolinaapp.AboutUsFragment;
 import drum.com.gasolinaapp.fragments.PostoMapFragment;
 import drum.com.gasolinaapp.helpers.DrawerHelperInterface;
 import drum.com.gasolinaapp.R;
-import drum.com.gasolinaapp.handlers.MapHandler;
 import drum.com.gasolinaapp.helpers.DrawerInitializeHelper;
-import drum.com.gasolinaapp.objects.GasStation;
 import drum.com.gasolinaapp.objects.Posto;
 
-public class MainActivity extends Activity implements DrawerHelperInterface {
+public class MainActivity extends Activity implements DrawerHelperInterface{
 
-    private GoogleMap map; // Might be null if Google Play services APK is not available.
     private boolean firstIntentAfterSplashScreen = true;
-    private MapHandler mapHandler;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ArrayList<Posto> postoList;
+    private int currentIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,29 +41,20 @@ public class MainActivity extends Activity implements DrawerHelperInterface {
         setContentView(R.layout.activity_main);
         if(firstIntentAfterSplashScreen){
             firstIntentAfterSplashScreen = false;
-            Bundle b = getIntent().getExtras();
-            ArrayList<Posto> listPosto = b.getParcelableArrayList("postoList");
-            if(listPosto != null){
-                postoList = listPosto;
-            }
-            changeContentToFragment(PostoMapFragment.newInstance("a", "da"));
-
-//            setUpMapIfNeeded();
-//            setDrawerMenu();
+            changeContentByFragment(POSTO_INTENT);
+//            changeContentToFragment(new PostoMapFragment());
+            setDrawerMenu();
         }
     }
 
     private void changeContentToFragment(Fragment fragment) {
-        FragmentManager manager = getFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_content, fragment); // newInstance() is a static factory method.
-        transaction.commit();
+        getFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setUpMapIfNeeded();
+//        setUpMapIfNeeded();
         handleIntent(getIntent());
     }
 
@@ -82,6 +65,10 @@ public class MainActivity extends Activity implements DrawerHelperInterface {
     }
 
     private void handleIntent(Intent intent) {
+        if(intent.getAction() != null){
+
+            Log.i("DEBUG INTENT", intent.getAction());
+        }
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
 //            doMySearch(query);
@@ -120,19 +107,22 @@ public class MainActivity extends Activity implements DrawerHelperInterface {
         mDrawerLayout = helperDrawer.getDrawerLayout();
     }
 
-    private void setUpMapIfNeeded() {
+    @Override
+    public void changeContentByFragment(int id) {
 
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (map == null) {
-            // Try to obtain the map from the SupportMapFragment.
-            android.app.FragmentManager fragmentManager = getFragmentManager();
-            map = ((MapFragment)fragmentManager.findFragmentById(R.id.map)).getMap();
+        Log.i("changeContentByFragment", String.valueOf(id));
+        if(currentIntent != id) {
 
-            mapHandler = new MapHandler(map, this);
+            switch (id) {
+                case ABOUT_US_INTENT:
+                    currentIntent = id;
+                    changeContentToFragment(new AboutUsFragment());
+                break;
 
-            // Check if we were successful in obtaining the map.
-            if (map != null) {
-                mapHandler.initialize(postoList);
+                case POSTO_INTENT:
+                    currentIntent = id;
+                    changeContentToFragment(new PostoMapFragment());
+                break;
             }
         }
     }
@@ -141,4 +131,5 @@ public class MainActivity extends Activity implements DrawerHelperInterface {
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo){
         getMenuInflater().inflate(R.menu.main_menu, menu);
     }
+
 }
